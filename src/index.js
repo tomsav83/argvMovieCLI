@@ -1,29 +1,20 @@
+const yargs = require('yargs');
 const Movie = require('./utils/utils.js');
+const args = yargs.argv;
 
 const app = () => {
-  switch (process.argv[2]) {
+  switch (args.command) {
     case 'add':
       // function that adds movie from process.argv into an array and console.logs the array.
-      const newMovie = new Movie(
-        process.argv[3],
-        process.argv[4],
-        process.argv[5]
-      );
+      const newMovie = new Movie(args.title, args.actor, args.additionalInfo);
+
       newMovie.add();
       newMovie.list();
       break;
 
     case 'add multi':
-      const movie1 = new Movie(
-        process.argv[3],
-        process.argv[4],
-        process.argv[5]
-      );
-      const movie2 = new Movie(
-        process.argv[6],
-        process.argv[7],
-        process.argv[8]
-      );
+      const movie1 = new Movie(args.title1, args.actor1, args.additionalInfo1);
+      const movie2 = new Movie(args.title2, args.actor2, args.additionalInfo2);
       movie1.add();
       movie2.add();
       movie1.list();
